@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #FFD495 0%, #FFFFFF 100%) no-repeat;
+  font-family: monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+.writer_list {
+  display: inline-flex;
+  word-break: break-all;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 45px;
+
+  .writer {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 230px;
+    height: 203px;
+    background: #D9D9D9;
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+.book_list {
+  display: inline-flex;
+  word-break: break-all;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 45px;
+
+  .book {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 225px;
+    height: auto;
+    background: #D9D9D9;
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      height: 225px;
+    }
+  }
+}
+
+.reading {
+  font-size: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2.5%;
+  background-color: wheat;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+  #close {
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  #page_index {
+    background-color: lightyellow;
+    color: black;
+  }
+
+  button {
+    margin: 5px;
+    background-color: firebrick;
+    color: white;
+    border: 0px;
+    height: 25px;
+    width: 30px;
+    border-radius: 5px;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 53px;
+  background: #FDFFB0;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 58px;
+  color: #000000;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+
+  span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    margin-right: 15px;
+    margin-left: 15px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
