@@ -1,5 +1,6 @@
 import tortoise
 from tortoise import Tortoise, run_async
+from tortoise.exceptions import DoesNotExist, IntegrityError
 
 from typing import Type, Any
 
@@ -12,18 +13,18 @@ async def init():
 
 
 async def get(model: Type[tortoise.models.Model], id: int, *args) -> dict:
-    entry = await model.get(id=id).values(*args)
-    if entry:
+    try:
+        entry = await model.get(id=id).values(*args)
         return entry
-    else:
+    except DoesNotExist:
         return {"error": "404"}
 
 
-async def get_by_column(model: Type[tortoise.models.Model], col: str, value: Any) -> dict:
-    entry = await model.get(**{col: value})
-    if entry:
+async def get_by_column(model: Type[tortoise.models.Model], col: str, value: Any, *args) -> dict:
+    try:
+        entry = await model.get(**{col: value}).values(*args)
         return entry
-    else:
+    except DoesNotExist:
         return {"error": "404"}
 
 
@@ -33,31 +34,37 @@ async def get_all(model: Type[tortoise.models.Model], *args) -> list[dict]:
 
 
 async def get_one(model: Type[tortoise.models.Model], id: int, col: str) -> str:
-    entry = await model.filter(id=id).values(col)
-    if entry:
+    try:
+        entry = await model.filter(id=id).values(col)
         return entry[0][col]
-    else:
+    except DoesNotExist:
+        return "404"
+    except IndexError:
         return "404"
 
 
-async def post(model: Type[tortoise.models.Model], **kwargs):
-    await model.create(**kwargs)
+async def post(model: Type[tortoise.models.Model], **kwargs) -> str:
+    try:
+        await model.create(**kwargs)
+        return "OK"
+    except IntegrityError:
+        return "error: this account is already taken by someone else"
 
 
 async def put(model: Type[tortoise.models.Model], id: int, **kwargs):
-    entry = await model.get(id=id)
-    if entry:
+    try:
+        entry = await model.get(id=id)
         await entry.update_from_dict(kwargs)
         await entry.save()
-    else:
+    except DoesNotExist:
         return "404"
 
 
 async def delete(model: Type[tortoise.models.Model], id: int):
-    entry = await model.get(id=id)
-    if entry:
+    try:
+        entry = await model.get(id=id)
         await entry.delete()
-    else:
+    except DoesNotExist:
         return "404"
 
 
