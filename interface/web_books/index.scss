@@ -89,8 +89,13 @@ button {
 .reading {
   font-size: 15px;
   position: absolute;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  width: 700px;
   margin-top: 2.5%;
   background-color: wheat;
   border-radius: 10px;
@@ -224,8 +229,8 @@ header {
   }
   
   .preview-image {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 300px;
     object-fit: cover;
     margin-bottom: 25px;
   }
@@ -235,7 +240,23 @@ header {
   }
 
   img {
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 300px;
+  }
+}
+
+
+.writers_books_list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+  #writer_book {
+    cursor: pointer;
   }
 }

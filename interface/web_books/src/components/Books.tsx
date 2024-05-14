@@ -22,7 +22,7 @@ function Books() {
             .catch((err) => console.log(err))
     }, [])
 
-    const handleSetReading = (id) => {
+    const handleSetReading = (id: number) => {
         setReading(!reading)
         setNeedReadingId(id)
     }

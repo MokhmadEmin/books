@@ -153,6 +153,12 @@ async def get_all_writer() -> list[dict]:
     return res
 
 
+@app.get("/writer/{id}/books")
+async def get_writer_books(id: int) -> list[dict]:
+    res = await db_actions.get_all_by_column(models.Book, "author_id", id, "id", "author_id", "name", "description", "text")
+    return res
+
+
 @app.get("/writer/{id}/icon")
 async def get_writer_icon(id: int) -> Response:
     res = await db_actions.get_one(models.Writer, id, "icon")

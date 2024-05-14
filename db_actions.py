@@ -33,6 +33,14 @@ async def get_all(model: Type[tortoise.models.Model], *args) -> list[dict]:
     return entries
 
 
+async def get_all_by_column(model: Type[tortoise.models.Model], col: str, value: Any, *args) -> list[dict]:
+    try:
+        entries = await model.filter(**{col: value}).all().values(*args)
+        return entries
+    except DoesNotExist:
+        return [{"error": "404"}]
+
+
 async def get_one(model: Type[tortoise.models.Model], id: int, col: str) -> str:
     try:
         entry = await model.filter(id=id).values(col)
