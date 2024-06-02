@@ -61,7 +61,7 @@ function BookAuthor(props: IdNeedProps) {
         axios.get(url)
             .then((res) => setBookAuthor(res.data))
             .catch((err) => console.log(err))
-    })
+    }, [])
 
 
     return <div>{bookAuthor}</div>

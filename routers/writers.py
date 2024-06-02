@@ -57,6 +57,18 @@ async def check_login(nickname: Annotated[str, Form()], password: Annotated[str,
         return False
 
 
+@writer_router.post("/profile")
+async def profile(nickname: Annotated[str, Form()],  password: Annotated[str, Form()]) -> dict | bool:
+    try:
+        res = await db_actions.get_by_column(models.Writer, "nickname", nickname, "id", "nickname", "name", "surname", "password", "description")
+        if res["nickname"] == nickname and res["password"] == password:
+            return res
+        else:
+            return False
+    except KeyError:
+        return False
+
+
 @writer_router.get("/get_id/{nickname}")
 async def get_id_by_nickname(nickname: str) -> int:
     try:

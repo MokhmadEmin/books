@@ -3,8 +3,8 @@ import axios from 'axios'
 import WriterBooks from "./WriterBooks"
 
 interface Writer {
-    id: number,
-    nickname: string,
+    id: number
+    nickname: string
     name: string
     surname: string
     password: string

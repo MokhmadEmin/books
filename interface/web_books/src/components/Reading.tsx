@@ -33,7 +33,7 @@ function Reading(props: ReadingProps) {
         axios.get(`http://127.0.0.1:8000/book/${props.id}/text`)
             .then((res) => setText(res.data))
             .catch((err) => console.log(err))
-    })
+    }, [])
 
     return (
         <div>

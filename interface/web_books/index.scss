@@ -260,3 +260,30 @@ header {
     cursor: pointer;
   }
 }
+
+
+#profile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #D9D9D9;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  img {
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+  }
+}
+
+
+#user_icon {
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+  margin-top: 10px;
+}

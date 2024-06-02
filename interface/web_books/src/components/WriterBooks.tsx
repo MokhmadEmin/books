@@ -24,7 +24,7 @@ function WriterBooks(props: WriterBooksProps) {
         axios.get(`http://127.0.0.1:8000/writer/${props.id}/books`)
             .then((res) => setBooksList(res.data))
             .catch((err) => console.log(err))
-    })
+    }, [])
 
 
     const handleSetReading = (id: number) => {
@@ -34,11 +34,12 @@ function WriterBooks(props: WriterBooksProps) {
 
     return (
         <div className="writers_books_list">
-            {booksList.map((book: Book) => (
+            {booksList.map((book: Book, index: number) => (
                 <div id="writer_book" onClick={() => handleSetReading(book.id)} key={book.id}>
                     <h1>{book.name}</h1>
                     <h4>{<BookAuthor id={book.author_id} />}</h4>
                     {book.description}
+                    {index !== booksList.length - 1 ? <hr /> : ""}
                 </div>
             ))}
             {needReadingId ? <Reading id={needReadingId} state={reading} closeFunc={() => setReading(false)} /> : ""}
@@ -60,7 +61,7 @@ function BookAuthor(props: IdNeedProps) {
         axios.get(url)
             .then((res) => setBookAuthor(res.data))
             .catch((err) => console.log(err))
-    })
+    }, [])
 
 
     return <div>{bookAuthor}</div>

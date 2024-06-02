@@ -17,7 +17,7 @@ function CreateBook() {
       axios.get(`http://127.0.0.1:8000/writer/get_id/${cookies.get("nickname")}`)
         .then((res) => setAuthor(res.data))
         .catch((err) => console.log(err))
-    })
+    }, [])
 
     const CreateFC = () => {
         formdata.append("author", author)
@@ -28,7 +28,7 @@ function CreateBook() {
 
         axios.post("http://127.0.0.1:8000/book/create", formdata)
             .then(() => alert("OK"))
-            .catch((err) => console.log(err))
+            .catch((err) => alert(err))
     }
 
     const handleFileChange = (e) => {
